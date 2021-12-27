@@ -8,7 +8,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
-public class demowebshopAPISimpleTest {
+public class DemowebshopAPISimpleTest {
 
     String url = "http://demowebshop.tricentis.com",
             email = "test@test.gg",
