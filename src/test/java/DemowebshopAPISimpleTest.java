@@ -9,8 +9,8 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 public class DemowebshopAPISimpleTest {
-
-    String url = "http://demowebshop.tricentis.com",
+    String
+            url = "http://demowebshop.tricentis.com",
             email = "test@test.gg",
             password = "1234pass",
             quantityString;
@@ -39,13 +39,14 @@ public class DemowebshopAPISimpleTest {
                     getWebDriver().manage().addCookie(
                             new Cookie("NOPCOMMERCE.AUTH", authorizationCookie)));
 
-            step("Check UI quantity", () ->
-                    open(url));
-            quantityString = $("#topcartlink").sibling(0).$(".wishlist-qty").getText();
-            quantityString = quantityString.replaceAll("[()]", "");
-            quantityInt = Integer.parseInt(quantityString);
-            quantityInt++;
-            quantityString = "(" + quantityInt + ")";
+            step("Get quantity by UI", () -> {
+                open(url);
+                quantityString = $(".wishlist-qty").getText();
+                quantityString = quantityString.replaceAll("[()]", "");
+                quantityInt = Integer.parseInt(quantityString);
+                quantityInt++;
+                quantityString = "(" + quantityInt + ")";
+            });
 
             step("Add to wishlist and check", () ->
                     given()
